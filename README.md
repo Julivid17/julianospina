@@ -1,2 +1,0 @@
-# Joyeria-web
-Emprendimiento Joyeria

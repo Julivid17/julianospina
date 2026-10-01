@@ -149,6 +149,28 @@ html,body{overflow-x:clip}
 .hsplit.hs-in .hi{transform:none;opacity:1}
 @media(max-width:850px){.hsplit .hi{transform:translateY(60%);transition-duration:.7s}}
 @media(prefers-reduced-motion:reduce){.hsplit .hi{transform:none;opacity:1;transition:none}}
+@media(min-width:851px){.closing h2{font-size:clamp(52px,7.4vw,118px)}}
+.hsplit .hl,.hsplit .hi{color:inherit}
+.selection h2{color:var(--ink)}
+.selection h2 .hi>span{color:#4338ca}
+.statement{background:radial-gradient(60% 70% at 85% 10%,rgba(124,92,255,.35),transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(255,92,64,.22),transparent 70%),#0f0d1c;color:#f4f2ee}
+.statement .section-label{color:#a9a5c4}
+.statement h2{color:#fff}
+.statement h2 .hl:nth-child(2) .hi{color:#d7ff32}
+.statement h2 .hl:nth-child(3) .hi,.statement h2 .hl:nth-child(3) .hi>span{background:linear-gradient(90deg,#ff6a4d,#ff4fa3 55%,#9b7bff);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.statement .lead{color:#fff}.statement-grid p{color:#d6d3e6}
+.statement .skill-grid{border-top-color:rgba(255,255,255,.22)}
+.statement .skill{border-color:rgba(255,255,255,.22);color:#f4f2ee}
+.statement .skill small,.statement .skill p{color:#a9a5c4}
+.hero{background:radial-gradient(55% 60% at 90% 15%,rgba(255,255,255,.55),transparent 70%),linear-gradient(160deg,#c9d6ff,#b9c8ff)}
+.nav{background:rgba(201,214,255,.88);border-bottom-color:rgba(16,16,16,.12)}
+.hero h1 em{color:#4338ca}
+@media(max-width:850px){.nav .nav-links,.nav nav,.nav.nav-open nav{background:#c9d6ff!important;border-bottom:1px solid rgba(16,16,16,.14)}.nav nav a{border-bottom-color:rgba(16,16,16,.16)!important}.nav nav a:active,.nav nav a:hover{color:#4338ca}.statement .skill{color:var(--ink)!important}.statement .skill small,.statement .skill p{color:var(--muted)!important}}
+@media(min-width:851px){.hero h1{font-size:clamp(58px,7.4vw,118px)}}
+.statement .skill:hover{background:#d7ff32;color:#0f0d1c}.statement .skill:hover p,.statement .skill:hover small{color:#2b2740}
+@media(min-width:851px){.cv-intro{grid-template-columns:1fr;gap:0}.cv-intro p{max-width:460px;margin-top:18px}.cv-intro h2{font-size:clamp(58px,6.6vw,106px)}.cv-intro h2 .hi{white-space:nowrap}}
+.cv-intro h2{color:var(--ink)}.cv-intro h2 .hi>span,.cv-intro h2>span{color:#4338ca}
+@media(min-width:851px){.selection h2{font-size:clamp(58px,6.8vw,110px)}.selection h2 .hi{white-space:nowrap}}
 .dev-section{padding:100px 7vw;background:var(--bg)}
 .dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
 .dev-card{display:flex;flex-direction:column;gap:16px;padding:26px 24px;min-height:0;text-decoration:none;color:var(--ink);background:#fff;border:1px solid rgba(16,16,16,.12);border-top:6px solid var(--coral);transition:.25s}
@@ -420,7 +442,7 @@ body{background:var(--bg)}
 <section class="statement" id="perfil">
   <div class="section-label">01 — PERFIL</div>
   <div class="statement-grid">
-    <h2 class="reveal">ESTRATEGIA.<br>TECNOLOGÍA.<br><span>CREATIVIDAD.</span></h2>
+    <h2 class="reveal">ESTRATEGIA.<br>TECNOLOGÍA.<br><span>IMAGINACIÓN.</span></h2>
     <div>
       <p class="lead">Un perfil que conecta la formación publicitaria con la ejecución digital y la producción visual.</p>
       <p>Mi experiencia cruza publicidad, ecommerce, marketing digital, desarrollo web y fotografía para convertir ideas en experiencias digitales que generan resultados.</p>
@@ -906,7 +928,7 @@ body{background:var(--bg)}
 
 <section class="closing" id="contacto">
   <p class="kicker">08 — CONTACTO</p>
-  <h2 class="reveal">UNA HOJA DE VIDA<br>CUENTA <em>QUIÉN SOY.</em></h2>
+  <h2 class="reveal">ESTRATEGIA, CÓDIGO<br>Y CÁMARA.<br><em>LISTO PARA SUMAR.</em></h2>
   <p>Del brief al creativo final.</p>
   <a class="btn light" href="https://wa.me/573025820054" target="_blank" rel="noopener">ARMEMOS LA IDEA <span>↗</span></a>
   <div class="contact-links">

@@ -118,9 +118,17 @@ footer{padding:28px 7vw;display:flex;justify-content:space-between;gap:20px;font
 @media(max-width:850px){.proyectos-section h2,.dev-section h2{font-size:clamp(40px,12vw,68px);letter-spacing:-.045em;overflow-wrap:break-word}}
 /* ============ PROYECTOS AUDIOVISUALES (YouTube embed) ============ */
 .proyectos-section{padding:150px 7vw;background:#f2f0eb}
-.video-frame{position:relative;width:100%;max-width:980px;aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a1a,#0a0a0a);box-shadow:16px 16px 0 var(--coral);margin-top:70px;overflow:hidden}
+.video-wrap{max-width:1100px;margin-top:50px}
+.video-ctrl{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.video-count{font:600 11px "DM Mono",monospace;letter-spacing:.08em;opacity:.6}
+.video-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.video-track::-webkit-scrollbar{display:none}
+.video-frame{position:relative;flex:0 0 calc(50% - 7px);scroll-snap-align:start;aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a1a,#0a0a0a);border-bottom:6px solid var(--coral);overflow:hidden}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
-.video-poster{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-decoration:none;transition:.25s}
+.video-poster{position:absolute;inset:0;z-index:2;display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-decoration:none;transition:.25s}
+.video-wrap.no-embed .video-poster{display:flex}
+.video-wrap.no-embed iframe{display:none}
+.video-frame iframe{background:#111}
 .video-poster .play-circle{width:76px;height:76px;border-radius:50%;background:var(--coral);color:#101010;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(255,255,255,.15);transition:.25s}
 .video-poster:hover .play-circle{transform:scale(1.08)}
 .video-fallback{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);color:#fff;padding:12px 18px;font:600 11px "DM Mono",monospace;letter-spacing:.06em;border:1px solid rgba(255,255,255,.18);border-radius:3px}
@@ -167,7 +175,8 @@ footer{padding:28px 7vw;display:flex;justify-content:space-between;gap:20px;font
 
 @media(max-width:850px){
   .proyectos-section{padding:70px 6vw}
-  .video-frame{margin-top:40px;box-shadow:8px 8px 0 var(--coral)}
+  .video-wrap{margin-top:34px}
+  .video-frame{flex-basis:88%}
 }
 
 /* ============ FOTO Y SCREENSHOT REALES ============ */
@@ -552,13 +561,64 @@ body{background:var(--bg)}
     <h2>DETRÁS<br><span>DE CÁMARA.</span></h2>
     <p>Una muestra de mi trabajo en fotografía y producción audiovisual.</p>
   </div>
-  <div class="video-frame reveal">
-    <iframe src="https://www.youtube-nocookie.com/embed/Lm3ARnWCf54" title="Reel audiovisual — Julián Ospina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-    <a class="video-poster" href="https://youtu.be/Lm3ARnWCf54" target="_blank" rel="noopener">
-      <span class="play-circle">▶</span>
-      <span class="video-fallback">VER EN YOUTUBE <span>↗</span></span>
-    </a>
+  <div class="video-wrap reveal">
+  <div class="video-ctrl">
+    <span class="video-count" id="vidCount">01 / 04</span>
+    <div class="alb-ctrl">
+      <button type="button" class="alb-btn" id="vidPrev" aria-label="Video anterior">←</button>
+      <button type="button" class="alb-btn" id="vidNext" aria-label="Video siguiente">→</button>
+    </div>
   </div>
+  <div class="video-track" id="vidTrack">
+    <!-- Para agregar más videos: copia un bloque .video-frame y cambia el ID de YouTube (en el src del iframe y en el href del enlace) -->
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/Lm3ARnWCf54" title="Reel audiovisual — Julián Ospina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <a class="video-poster" href="https://youtu.be/Lm3ARnWCf54" target="_blank" rel="noopener">
+        <span class="play-circle">▶</span>
+        <span class="video-fallback">VER EN YOUTUBE <span>↗</span></span>
+      </a>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/IuDKEsC4WkU" title="Proyecto audiovisual — Julián Ospina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <a class="video-poster" href="https://youtu.be/IuDKEsC4WkU" target="_blank" rel="noopener">
+        <span class="play-circle">▶</span>
+        <span class="video-fallback">VER EN YOUTUBE <span>↗</span></span>
+      </a>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/85msGE-uPdI" title="Proyecto audiovisual 3 — Julián Ospina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <a class="video-poster" href="https://youtu.be/85msGE-uPdI" target="_blank" rel="noopener">
+        <span class="play-circle">▶</span>
+        <span class="video-fallback">VER EN YOUTUBE <span>↗</span></span>
+      </a>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/odGhsXYVuM0" title="Proyecto audiovisual 4 — Julián Ospina" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <a class="video-poster" href="https://youtu.be/odGhsXYVuM0" target="_blank" rel="noopener">
+        <span class="play-circle">▶</span>
+        <span class="video-fallback">VER EN YOUTUBE <span>↗</span></span>
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var t=document.getElementById('vidTrack'),p=document.getElementById('vidPrev'),n=document.getElementById('vidNext'),c=document.getElementById('vidCount');
+  if(!t||!p||!n)return;
+  /* En el visor de Claude los iframes externos se bloquean: se muestra el póster con enlace a YouTube. En un sitio normal (GitHub Pages) se reproduce embebido. */
+  var wrap=t.parentNode;if(window.claude||/claude|anthropic/i.test(location.hostname)){wrap.classList.add('no-embed');}
+  function step(){var f=t.querySelector('.video-frame');return f?f.getBoundingClientRect().width+14:400;}
+  function pad(x){return x<10?'0'+x:''+x;}
+  function upd(){
+    p.disabled=t.scrollLeft<4;n.disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-4;
+    var total=t.querySelectorAll('.video-frame').length,cur=Math.min(total,Math.round(t.scrollLeft/step())+1);
+    if(c)c.textContent=pad(cur)+' / '+pad(total);
+  }
+  p.addEventListener('click',function(){t.scrollBy({left:-step(),behavior:'smooth'});});
+  n.addEventListener('click',function(){t.scrollBy({left:step(),behavior:'smooth'});});
+  t.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);upd();
+})();
+</script>
 
   <div class="albums-head reveal">
     <div>

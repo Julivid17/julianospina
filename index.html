@@ -59,6 +59,37 @@ footer{padding:28px 7vw;display:flex;justify-content:space-between;gap:20px;font
 .document button{transition:.25s}
 .document button:hover{color:var(--coral);border-color:var(--coral)}
 
+.job-toggle{cursor:pointer;transition:background .25s}
+.job-toggle:hover{background:rgba(16,16,16,.03)}
+.job-toggle:focus-visible{outline:2px solid var(--coral);outline-offset:4px}
+.job-cta{display:inline-flex;align-items:center;gap:10px;margin-top:18px;font:600 11px "DM Mono",monospace;letter-spacing:.08em;color:var(--coral)}
+.job-cta i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid currentColor;border-radius:50%;font-size:14px;line-height:1;transition:transform .3s}
+.job-toggle.open .job-cta i{transform:rotate(45deg)}
+.job-case{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease;border-top:0}
+.job-case.open{grid-template-rows:1fr}
+.job-case-in{overflow:hidden;min-height:0}
+.job-case.open .job-case-in{padding:6px 0 40px}
+.case-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-top:6px}
+.case-head p{font-size:14px;opacity:.7;max-width:560px}
+.case-track{display:flex;gap:14px;margin-top:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.case-track::-webkit-scrollbar{display:none}
+.case-card{flex:0 0 clamp(290px,31vw,380px);scroll-snap-align:start;display:flex;flex-direction:column;gap:14px;padding:24px 22px;background:#fff;color:var(--ink);border:1px solid rgba(16,16,16,.12);border-top:5px solid var(--coral)}
+.case-card:nth-child(2n){border-top-color:var(--indigo)}
+.case-card:nth-child(3n){border-top-color:var(--teal)}
+.case-num{font:600 11px "DM Mono",monospace;opacity:.5;letter-spacing:.06em}
+.case-card h4{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:22px;line-height:1.1}
+.case-card dl{display:grid;gap:4px;margin:0}
+.case-card dt{font:600 10px "DM Mono",monospace;letter-spacing:.08em;color:var(--coral);margin-top:8px}
+.case-card:nth-child(2n) dt{color:var(--indigo)}
+.case-card:nth-child(3n) dt{color:#0f9d8a}
+.case-card dd{margin:0;font-size:13.5px;line-height:1.5;opacity:.82}
+.case-card .dev-tags{margin-top:auto;padding-top:8px}
+@media(max-width:850px){
+  .case-head{flex-direction:column;align-items:flex-start}
+  .case-card{flex-basis:84%}
+  .job-case.open .job-case-in{padding-bottom:28px}
+}
+@media(prefers-reduced-motion:reduce){.job-case{transition:none}}
 .dev-section{padding:100px 7vw;background:var(--bg)}
 .dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
 .dev-card{display:flex;flex-direction:column;gap:16px;padding:26px 24px;min-height:0;text-decoration:none;color:var(--ink);background:#fff;border:1px solid rgba(16,16,16,.12);border-top:6px solid var(--coral);transition:.25s}
@@ -393,15 +424,109 @@ body{background:var(--bg)}
   <h2 class="reveal">LO QUE<br><span>HE HECHO.</span></h2>
 
   <div class="timeline">
-    <article class="job reveal">
+    <article class="job job-toggle" id="caseToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="caseSR">
       <div class="job-date">2025 — ACTUALIDAD</div>
       <div class="job-main">
         <p class="company">DROGUERÍAS SANTA ROSA</p>
         <h3>Administrador de Ecommerce<br>y Desarrollo Web</h3>
         <p>VTEX · SEO · Catálogo · Landing pages · UX/UI · Contenido digital</p>
+        <span class="job-cta">VER CASE STUDY <i>+</i></span>
       </div>
       <div class="job-num">01</div>
     </article>
+    <div class="job-case" id="caseSR" role="region" aria-label="Case study Droguerías Santa Rosa" aria-hidden="true">
+  <div class="job-case-in">
+    <div class="case-head">
+      <p>Un vistazo a lo que he construido y operado para una farmacia en línea con más de 4.000 referencias.</p>
+      <div class="alb-ctrl">
+        <button type="button" class="alb-btn" id="caseCPrev" aria-label="Proyectos anteriores">←</button>
+        <button type="button" class="alb-btn" id="caseCNext" aria-label="Proyectos siguientes">→</button>
+      </div>
+    </div>
+    <div class="case-track" id="caseTrack">
+
+    <article class="case-card">
+      <div class="case-num">01</div>
+      <h4>Rediseño del storefront</h4>
+      <dl>
+        <dt>RETO</dt><dd>Dar a la farmacia una tienda moderna y propia, construida sobre VTEX IO.</dd>
+        <dt>QUÉ HICE</dt><dd>Rediseñé header, footer, home y páginas de categoría, y definí el sistema de color de marca. Construí componentes a medida: slider de categorías con arrastre, galería de producto con rotación automática y minicart con más vendidos.</dd>
+        <dt>RESULTADO</dt><dd>Una tienda con identidad propia, en producción en santarosadroguerias.com.</dd>
+      </dl>
+      <div class="dev-tags"><span>VTEX IO</span><span>React</span><span>CSS</span><span>UX/UI</span></div>
+    </article>
+    <article class="case-card">
+      <div class="case-num">02</div>
+      <h4>Checkout a la medida</h4>
+      <dl>
+        <dt>RETO</dt><dd>Un checkout genérico que no reflejaba la marca ni las reglas del negocio.</dd>
+        <dt>QUÉ HICE</dt><dd>Personalicé el checkout: bolsa ecológica que se agrega sola (1 por cada 8 unidades), avisos de envío distintos por zona, stepper de progreso, carrito optimizado para móvil y los medios de pago Addi y Mercado Pago.</dd>
+        <dt>RESULTADO</dt><dd>Paquete completo desplegado a producción en agosto de 2026.</dd>
+      </dl>
+      <div class="dev-tags"><span>Checkout</span><span>JavaScript</span><span>Addi</span><span>Móvil</span></div>
+    </article>
+    <article class="case-card">
+      <div class="case-num">03</div>
+      <h4>Envíos nacionales</h4>
+      <dl>
+        <dt>RETO</dt><dd>Vender a todo el país con costos de envío claros y sin app nativa de la transportadora.</dd>
+        <dt>QUÉ HICE</dt><dd>Diseñé la tabla de fletes de Inter Rapidísimo por zonas en VTEX y audité peso y dimensiones de ~4.300 SKUs activos, con peso volumétrico, para que el cálculo del flete sea confiable.</dd>
+        <dt>RESULTADO</dt><dd>Catálogo con peso y dimensiones corregidos; tabla de fletes en implementación.</dd>
+      </dl>
+      <div class="dev-tags"><span>Logística</span><span>VTEX</span><span>Catálogo</span><span>Datos</span></div>
+    </article>
+    <article class="case-card">
+      <div class="case-num">04</div>
+      <h4>Cumplimiento normativo</h4>
+      <dl>
+        <dt>RETO</dt><dd>Adaptar la tienda a la Resolución 1896 de 2023 para la venta de medicamentos en línea.</dd>
+        <dt>QUÉ HICE</dt><dd>Revisé las reglas con el cliente: fichas de producto sin indicaciones, categoría de prescripción fuera del menú, buscador por síntoma restringido y datos legales visibles en el sitio.</dd>
+        <dt>RESULTADO</dt><dd>Plan de ajustes definido y en ejecución junto con el cliente.</dd>
+      </dl>
+      <div class="dev-tags"><span>SEO</span><span>Normativa</span><span>UX/UI</span><span>Contenido</span></div>
+    </article>
+    <article class="case-card">
+      <div class="case-num">05</div>
+      <h4>Catálogo y operación</h4>
+      <dl>
+        <dt>RETO</dt><dd>Mantener miles de productos con precios e inventario al día, semana tras semana.</dd>
+        <dt>QUÉ HICE</dt><dd>Importé más de 7.400 productos nuevos y establecí un flujo semanal de 4 archivos (precios, inventario y SKUs fraccionados) con reglas claras de descuentos.</dd>
+        <dt>RESULTADO</dt><dd>Operación ordenada y repetible, con ~4.300 referencias activas.</dd>
+      </dl>
+      <div class="dev-tags"><span>VTEX</span><span>Excel</span><span>Catálogo</span><span>Operación</span></div>
+    </article>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var job=document.getElementById('caseToggle'),panel=document.getElementById('caseSR'),
+      t=document.getElementById('caseTrack'),p=document.getElementById('caseCPrev'),n=document.getElementById('caseCNext');
+  if(!job||!panel||!t)return;
+  function step(){var c=t.querySelector('.case-card');return c?c.getBoundingClientRect().width+14:340;}
+  function upd(){p.disabled=t.scrollLeft<4;n.disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-4;}
+  function toggle(){
+    var open=!job.classList.contains('open');
+    job.classList.toggle('open',open);panel.classList.toggle('open',open);
+    job.setAttribute('aria-expanded',open);panel.setAttribute('aria-hidden',!open);var lb=job.querySelector('.job-cta');if(lb)lb.firstChild.nodeValue=open?'CERRAR CASE STUDY ':'VER CASE STUDY ';
+    if(open){t.scrollLeft=0;setTimeout(upd,60);}
+  }
+  job.addEventListener('click',toggle);
+  job.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+  p.addEventListener('click',function(){t.scrollBy({left:-step(),behavior:'smooth'});});
+  n.addEventListener('click',function(){t.scrollBy({left:step(),behavior:'smooth'});});
+  t.addEventListener('scroll',upd,{passive:true});window.addEventListener('resize',upd);
+  var paused=0,vis=false,mq=window.matchMedia('(max-width:850px)'),rm=window.matchMedia('(prefers-reduced-motion: reduce)');
+  ['touchstart','pointerdown','wheel'].forEach(function(e){t.addEventListener(e,function(){paused=Date.now()+7000;},{passive:true});});
+  if('IntersectionObserver' in window){new IntersectionObserver(function(en){vis=en[0].isIntersecting;},{threshold:.3}).observe(t);}else{vis=true;}
+  setInterval(function(){
+    if(!mq.matches||rm.matches||!vis||!panel.classList.contains('open')||Date.now()<paused)return;
+    var atEnd=t.scrollLeft+t.clientWidth>=t.scrollWidth-6;
+    t.scrollTo({left:atEnd?0:t.scrollLeft+step(),behavior:'smooth'});
+  },3600);
+})();
+</script>
+
     <article class="job reveal">
       <div class="job-date">2019 — ACTUALIDAD</div>
       <div class="job-main">

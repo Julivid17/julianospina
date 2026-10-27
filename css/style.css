@@ -454,3 +454,15 @@ body{background:var(--bg)}
 .caso-dl:hover,.caso-dl:focus-visible{background:#d7ff32;color:#101010}
 .caso-dl span{font-size:15px;line-height:1}
 @media(max-width:850px){.caso-dl{align-self:stretch;justify-content:space-between;font-size:11px}}
+
+.caso-lock{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.caso-dl{cursor:pointer}
+.caso-pw{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.caso-pw[hidden]{display:none}
+.caso-pw label{display:flex;flex-direction:column;gap:6px;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.06em;color:#101010}
+.caso-pw input{min-width:240px;padding:12px 14px;border:1px solid #101010;background:#fff;font:inherit;font-size:14px;letter-spacing:0;color:#101010}
+.caso-pw button{padding:13px 18px;background:#4338ca;color:#fff;border:0;font-family:"DM Mono",monospace;font-size:12px;letter-spacing:.06em;cursor:pointer}
+.caso-pw button:disabled{opacity:.6;cursor:wait}
+.caso-msg{flex-basis:100%;margin:0;font-family:"DM Mono",monospace;font-size:12px;color:#101010}
+.caso-msg.err{color:#b3261e}
+@media(max-width:850px){.caso-lock{align-self:stretch}.caso-pw input{min-width:0;width:100%}.caso-pw label{flex:1 1 100%}.caso-pw button{flex:1 1 100%}}

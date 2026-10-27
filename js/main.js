@@ -392,3 +392,36 @@ document.addEventListener("keydown",e=>{
     else if(navEl.classList.contains("nav-open")) setMenu(false);
   }
 });
+
+
+/* ---- descarga protegida con contraseña (AES-GCM + PBKDF2 en el navegador) ---- */
+(function(){
+  var enc=new TextEncoder();
+  async function descifrar(buf,pass){
+    var b=new Uint8Array(buf), salt=b.slice(0,16), iv=b.slice(16,28), data=b.slice(28);
+    var base=await crypto.subtle.importKey('raw',enc.encode(pass),'PBKDF2',false,['deriveKey']);
+    var key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:200000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},key,data);
+  }
+  document.querySelectorAll('.caso-lock').forEach(function(box){
+    var btn=box.querySelector('.caso-dl'), form=box.querySelector('.caso-pw'),
+        input=form.querySelector('input'), go=form.querySelector('button'), msg=form.querySelector('.caso-msg');
+    btn.addEventListener('click',function(){ form.hidden=!form.hidden; if(!form.hidden) input.focus(); });
+    form.addEventListener('submit',async function(e){
+      e.preventDefault(); msg.className='caso-msg'; msg.textContent='Descifrando…'; go.disabled=true;
+      try{
+        if(!(window.crypto&&crypto.subtle)) throw new Error('nocrypto');
+        var r=await fetch(btn.dataset.file); if(!r.ok) throw new Error('fetch');
+        var plain=await descifrar(await r.arrayBuffer(),input.value);
+        var url=URL.createObjectURL(new Blob([plain],{type:'application/zip'}));
+        var a=document.createElement('a'); a.href=url; a.download=btn.dataset.name; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function(){URL.revokeObjectURL(url)},4000);
+        msg.textContent='Listo, tu descarga empezó.'; input.value='';
+      }catch(err){
+        msg.className='caso-msg err';
+        msg.textContent=(err.message==='nocrypto')?'Abre la página con https para descargar.':(err.message==='fetch')?'No se pudo traer el archivo. Intenta de nuevo.':'Contraseña incorrecta.';
+      }
+      go.disabled=false;
+    });
+  });
+})();

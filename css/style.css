@@ -449,3 +449,8 @@ body{background:var(--bg)}
   .caso-gal img{height:200px}
 }
 @media(prefers-reduced-motion:reduce){.caso-body{transition:none}}
+
+.caso-dl{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:4px;padding:13px 18px;background:#101010;color:#fff;font-family:"DM Mono",monospace;font-size:12px;letter-spacing:.06em;text-decoration:none;border:1px solid #101010;transition:background .2s,color .2s}
+.caso-dl:hover,.caso-dl:focus-visible{background:#d7ff32;color:#101010}
+.caso-dl span{font-size:15px;line-height:1}
+@media(max-width:850px){.caso-dl{align-self:stretch;justify-content:space-between;font-size:11px}}

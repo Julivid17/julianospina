@@ -359,7 +359,7 @@ const LETTERS = {
     filename: "Carta-Intencion-Azzorti.pdf"
   }
 };
-const PDF_DATA = { PRES_PDF: "assets/docs/cartas/Carta-Presentacion-Azzorti.pdf", INTEN_PDF: "assets/docs/cartas/Carta-Intencion-Azzorti.pdf" };
+const PDF_DATA = { PRES_PDF: "assets/descargas/cartas/Carta-Presentacion-Azzorti.pdf", INTEN_PDF: "assets/descargas/cartas/Carta-Intencion-Azzorti.pdf" };
 
 let lastFocused=null;
 function showModal(type){
